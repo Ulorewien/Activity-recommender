@@ -87,4 +87,6 @@ final_data["Rcuisine"] = final_data["Rcuisine"].fillna("Others")
 # print(final_data.columns)
 # print(final_data.shape)
 
-final_data.to_csv("final_data.csv", index=False)
+# final_data.to_csv("final_data.csv", index=False)
+
+print(final_data["Rcuisine"].value_counts())
