@@ -18,7 +18,7 @@ def HaDist(x1, y1, x2, y2):
     r = 6371
     return(c * r)
 
-def KNN(lat, lon, chosen_city, distance):
+def KNN(lat, lon, distance):
     for index, row in data.iterrows():
         if(row["city"] == chosen_city):
             # print(HaDist(lat, lon, row["latitude"], row["longitude"]))
@@ -26,7 +26,7 @@ def KNN(lat, lon, chosen_city, distance):
                 print(row["name"],", ",row["city"],", ",row["state"])
 
 # print(data.head())
-KNN(22, -101, "San Luis Potosi", 20)
+KNN(22, -101, 20)
 
 end_time = time.time()
 print("Execution time :",round((end_time-start_time)*1000, 2), "ms.")
