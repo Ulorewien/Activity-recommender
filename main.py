@@ -7,9 +7,9 @@ start_time = time.time()
 
 data = pd.read_csv("final_data.csv")
 
-cities = ["San Luis Potosi","Cuernavaca","Ciudad Victoria","Jiutepec","Soledad"]
-alcohol_type = ["No_Alcohol_Served","Wine-Beer","Full_Bar"]
-price_level = ["low","medium","high"]
+cities = ["San Luis Potosi","Cuernavaca","Ciudad Victoria","Jiutepec","Soledad",""]
+alcohol_type = ["No_Alcohol_Served","Wine-Beer","Full_Bar",""]
+price_level = ["low","medium","high",""]
 cuisine_type = [""]
 
 def HaDist(x1, y1, x2, y2):
@@ -35,14 +35,21 @@ def getFilters():
 
 def KNN(lat, lon, distance):
     city, alcohol, price, rating, cuisine = getFilters()
+    rest_set = []
     for index, row in data.iterrows():
-        if(row["city"] == city):
-            print(HaDist(lat, lon, row["latitude"], row["longitude"]))
-            if(HaDist(lat, lon, row["latitude"], row["longitude"]) < distance):
-                print(row["name"]+", "+row["city"]+", "+row["state"])
+        ha_dist = HaDist(lat, lon, row["latitude"], row["longitude"])
+        if(ha_dist < distance):
+            if(city == "" or city == row["city"]):
+                if(alcohol == "" or alcohol == row["alcohol"]):
+                    if(price == "" or price == row["price"]):
+                        if(rating == "" or rating <= row["rating"]):
+                            if(cuisine == "" or cuisine == row["Rcuisine"]):
+                                rest_set.append(index)
+    for rest in rest_set:
+        print(data.iloc[[rest]])
 
 # print(data.head())
-KNN(22, -101, 20)
+KNN(22.168110, -100.964089, 10)
 
 end_time = time.time()
 print("Execution time :",round((end_time-start_time)*1000, 2), "ms.")
