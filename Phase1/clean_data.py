@@ -54,7 +54,7 @@ data3 = data3.drop_duplicates()
 # print(data3.head())
 # print(data3["Rcuisine"].value_counts())
 
-data1 = data1.drop(["the_geom_meter","fax","accessibility","zip","url","Rambience","franchise","area","other_services","dress_code","smoking_area"], axis=1)
+data1 = data1.drop(["the_geom_meter","fax","accessibility","zip","url","Rambience","franchise","area","other_services","dress_code"], axis=1)
 data1["country"] = data1["country"].fillna("Mexico")
 data1 = data1.dropna(subset=["city","state"])
 data1["city"] = data1["city"].replace("san luis potosi","San Luis Potosi")
@@ -87,6 +87,6 @@ final_data["Rcuisine"] = final_data["Rcuisine"].fillna("Others")
 # print(final_data.columns)
 # print(final_data.shape)
 
-# final_data.to_csv("final_data.csv", index=False)
+final_data.to_csv("final_data.csv", index=False)
 
-print(final_data["Rcuisine"].value_counts())
+# print(final_data["smoking_area"].value_counts())
